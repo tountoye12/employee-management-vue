@@ -95,7 +95,7 @@
 
 import {ContactService} from '../services/ContactService'
 import Spinner from '../components/Spinner.vue'
-import {Contact} from '../types/contact';
+import {Contact} from '../customtypes/contact';
 import {defineComponent, onMounted, ref} from 'vue';
 
 defineComponent({

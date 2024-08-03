@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Contact } from "../types/contact";
+import { Contact } from "../customtypes/contact";
 
 
 export class ContactService {
@@ -20,7 +20,7 @@ export class ContactService {
     return axios.post(dataUrl, contact);
   }
 
-  static updateContact(contact: any, contactId:string) {
+  static updateContact(contact: Contact, contactId:string) {
     let dataUrl = `${this.serverUlr}/contacts/${contactId}`;
     return axios.put(dataUrl, contact);
   }
@@ -35,7 +35,7 @@ export class ContactService {
     return axios.get(dataUrl);
   }
 
-  static getGroup(contact : any) {
+  static getGroup(contact : Contact) {
     let groupId = contact.groupId;
     let dataUrl = `${this.serverUlr}/groups/${groupId}`;
     return axios.get(dataUrl);
