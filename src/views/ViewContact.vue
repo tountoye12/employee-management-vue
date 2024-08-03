@@ -61,40 +61,81 @@
   </div>
 </template>
   
-<script>
-import { ContactService } from '../services/ContactService'
-  export default {
-      name: "ViewContact",
-      data(){
-        return {
-          contactId: this.$route.params.contactId,
-          loading:  false,
-          contact: {},
-          errorMessage: null,
-          group: {}
-        }
-      },
+<script lang="ts" setup>
 
-      created: async function(){
-        try{
-          this.loading =true
-          let response = await ContactService.getContact(this.contactId)
-          let groupResponse = await ContactService.getGroup(response.data)
-          this.contact = response.data
-          this.group = groupResponse.data
-          this.loading = false
-        }
-        catch(error){
-          this.errorMessage = error
-          this.loading = false
-        }
-      },
-      methods: {
-        isDone(){
-          return Object.keys(this.contact).length > 0 && Object.keys(this.group).length > 0
-        }
-      }
+import { ContactService } from '../services/ContactService'
+import {onMounted, reactive, ref} from "vue";
+
+
+const  contactId = ref<string | null>(null);
+const loading = ref<boolean>(false);
+const  contact = reactive<Contact>({
+  id: '',
+  name: '',
+  photo: '',
+  email: '',
+  mobile: '',
+  compagny: '',
+  title: '',
+  groupId: ''
+});
+const  group = ref<any>(null);
+const  errorMessage = ref<string | null>(null);
+
+
+onMounted( async () => {
+  if(contactId.value !== null){
+    try{
+      loading.value =true
+      let response = await ContactService.getContact(contactId.value)
+      let groupResponse = await ContactService.getGroup(response.data)
+      contact.value = response.data
+      group.value = groupResponse.data
+      loading.value = false
+    }
+    catch(error){
+      //errorMessage.value = error
+      loading.value = false
+    }
   }
+});
+
+const  isDone =  () =>  {
+  return Object.keys(contact).length > 0 && Object.keys(group).length > 0
+}
+
+  // export default {
+  //     name: "ViewContact",
+  //     data(){
+  //       return {
+  //         contactId: this.$route.params.contactId,
+  //         loading:  false,
+  //         contact: {},
+  //         errorMessage: null,
+  //         group: {}
+  //       }
+  //     },
+  //
+  //     created: async function(){
+  //       try{
+  //         this.loading =true
+  //         let response = await ContactService.getContact(this.contactId)
+  //         let groupResponse = await ContactService.getGroup(response.data)
+  //         this.contact = response.data
+  //         this.group = groupResponse.data
+  //         this.loading = false
+  //       }
+  //       catch(error){
+  //         this.errorMessage = error
+  //         this.loading = false
+  //       }
+  //     },
+  //     methods: {
+  //       isDone(){
+  //         return Object.keys(this.contact).length > 0 && Object.keys(this.group).length > 0
+  //       }
+  //     }
+  // }
   
   </script>
   
