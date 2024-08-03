@@ -2,14 +2,20 @@
 
 </template>
 
-<script>
+<script lang="ts" setup>
 // @ is an alias to /src
 
 
-export default {
-  name: 'HomeView',
-  components: {
-   
-  }
-}
+import {defineComponent} from "vue";
+
+defineComponent({
+  name: "HomeView"
+})
+
+// export default {
+//   name: 'HomeView',
+//   components: {
+//
+//   }
+// }
 </script>

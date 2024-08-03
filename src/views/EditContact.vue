@@ -45,7 +45,6 @@
             <div class="md-2">
               <input type="submit" class="btn btn-success" value="Update">
             </div>
-
           </form>
         </div>
         <div class="col-md-4">
