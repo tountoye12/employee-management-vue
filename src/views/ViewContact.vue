@@ -64,12 +64,13 @@
 <script lang="ts" setup>
 
 import { ContactService } from '../services/ContactService'
-import {onMounted, reactive, ref} from "vue";
+import {onMounted, ref} from "vue";
+import {Contact} from "../customtypes/contact.ts";
 
 
 const  contactId = ref<string | null>(null);
 const loading = ref<boolean>(false);
-const  contact = reactive<Contact>({
+const  contact = ref<Contact>({
   id: '',
   name: '',
   photo: '',

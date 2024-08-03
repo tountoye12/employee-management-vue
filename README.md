@@ -31,3 +31,10 @@ cd server
 ```sh
  npm run start
 ```
+
+
+### Type-Check, Compile and Minify for Production
+
+```sh
+npm run build
+```

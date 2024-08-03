@@ -60,7 +60,7 @@ import {useRouter} from 'vue-router';
 import {ContactService} from '../services/ContactService'
 
 import {defineComponent, onMounted, reactive, ref} from 'vue';
-import {Contact} from '../types/contact';
+import {Contact} from '../customtypes/contact';
 
 // Used composition rather than Options
 
